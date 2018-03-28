@@ -1,0 +1,111 @@
+README: Tetris (snathan)
+
+HANDIN: This is my first and hopefully only handin. This handin is early
+
+DESIGN CHOICES:
+
+I wrote Tetris with the following classes:App, PaneOrganizer, Tetris, Piece, TetrisSquare, Constants
+
+App: Mainline blah blah blah
+
+PaneOrganizer: Create my five panes.3 content panes are the GamePane, Bottom Pane(quit button), and Right Pane(labels with score, tetris, store option, next piece, etc. along with instructions).
+
+Tetris: This class is my main class regarding my game and it's logic.
+	
+	Tetris Constructor: Takes in the gamePane, and a bunch of labels that relate back to the GUI. I set Focus, 
+			    instantiate a new movehandler, build the board, make my logic board, and create my
+			    gameOver label. I then construct my _nextPiece and set its type and then start my timeline.
+
+
+	buildBoard(): Builds the background board for the game.
+
+	blackoutBoard(): builds the blacked out board for gameOver.
+
+	setupTimeline(): self- explanatory. My duration speeds up every time 12 lines are cleared so the difficulty is 
+			 constantly increasing by a factor of 15% each time.
+
+	TimeHandler(): This handles most of my action throughout the game. Creates pieces constantly; checks for full
+		       lines, and then clears if necessary; speeds up duration based off lines cleared; keeps score 
+		       based off consecutively cleared lines. Updates the score, Tetris #, and linesCleared #. Then 
+		       constantly checks for whether the game is ending. If the game is over, the board gets blacked 
+		       out and Game Over appears.
+
+	MoveHandler(): Handles all my moves (Left, Right, Rotate, Drop, Hard Drop, Store, Pause). Then consumes event.
+
+	clearLine(i): clears lines and moves all rows above down
+
+	removeAllSquares(): removes all squares graphically from board
+
+	storePiece(): stores a piece for later use and can press the same button to recall the piece and switch with 
+		      current.
+
+	showNextPiece(): shows which piece comes after the current Piece.
+
+Piece: This is my main class regarding piece manipulation and creating the squares graphically 
+
+	Piece Constructor: Takes in the gamePane and logicBoard as parameters
+
+	show(): shows the piece on the board graphically
+
+	converttoInd(): converts pix to index
+
+	setPieceType(): sets the type of piece and then generates it at the same location at the top of the board
+			so that the piece starts falling.
+
+	getPieceType(): returns the number associated with the piece for knowing which piece comes next and which
+			pieces are stored.
+
+	rotate(): rotates the pieces based off the algorithm given in the handout
+
+	rotatePossible(): checks whether rotation is possible by rotating and then checking whether the index is open
+			  at the new hypothetical position.
+
+	moveLeft(): moves the squares left by Constants.SQUARE_SIDE pixels (Constant)
+
+	canMoveLeft(): checks whether the piece can move left before moving left
+
+	moveRight(): moves piece right by Constants.SQUARE_SIDE pix
+
+	canMoveRight(): checks whether the move right is legal before performing the move
+
+	moveDown(): moves the piece down by Constants.SQUARE_SIDE pix
+	
+	canMoveDown(): checks whether the move down is legal or whether piece would intersect with another piece
+
+	dropPiece(): if canMoveDown, moves down, otherwise converts position to index and sets the logic board 
+
+	setPiece(): sets the piece to the logic board. redundant to drop piece but after a while of coding
+		    both are used and the program works so I'm just gonna leave it there for now.
+
+	fullDrop(): while can move down true, constantly move down until no longer able
+
+	removePiece(): remove piece from screen graphically square by square.
+
+TetrisSquare: Class that constructs each individual square for a piece
+	
+	TetrisSquare constructor: constructs generic square with stroke black
+
+	getNode(): gets the square for graphical use
+
+	setFill(): sets fill
+
+	setX(): sets x position
+
+	setY(): sets y position
+
+	getY(): gets Y position
+
+	getX(): gets x position
+
+	getSquare(): gets the square
+
+	getColor(): gets the fill (not sure if i actually used this)
+
+Constants: Self explanatory. Contain the array coordinates used to create each of the 7 pieces. 
+
+KNOWN BUGS:       My store piece methodology preserves the position of the piece stored when stored. Therefore, 
+		  if you play the game and get close to the top and then try to get a piece you stored that was close to 
+		  the bottom when stored, it will graphically sit on the board, but not logically affect the game.
+
+
+
