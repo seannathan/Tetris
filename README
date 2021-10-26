@@ -1,12 +1,8 @@
-README: Tetris (snathan)
-
-HANDIN: This is my first and hopefully only handin. This handin is early
+README: Tetris
 
 DESIGN CHOICES:
 
 I wrote Tetris with the following classes:App, PaneOrganizer, Tetris, Piece, TetrisSquare, Constants
-
-App: Mainline blah blah blah
 
 PaneOrganizer: Create my five panes.3 content panes are the GamePane, Bottom Pane(quit button), and Right Pane(labels with score, tetris, store option, next piece, etc. along with instructions).
 
